@@ -28,7 +28,7 @@ import com.alissonvgs.repositories.EnderecoRepository;
 import com.alissonvgs.repositories.EstadoRepository;
 import com.alissonvgs.repositories.ItemPedidoRepository;
 import com.alissonvgs.repositories.PagamentoRepository;
-import com.alissonvgs.repositories.PedidoRespository;
+import com.alissonvgs.repositories.PedidoRepository;
 import com.alissonvgs.repositories.ProdutoRepository;
 
 @SpringBootApplication
@@ -53,7 +53,7 @@ public class CursomcApplication implements CommandLineRunner {
 	private EnderecoRepository enderecoRepository;
 
 	@Autowired
-	private PedidoRespository pedidoRepository;
+	private PedidoRepository pedidoRepository;
 
 	@Autowired
 	private PagamentoRepository pagamentoRepository;
