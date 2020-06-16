@@ -1,12 +1,14 @@
 package com.alissonvgs.services;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.alissonvgs.domain.Categoria;
 import com.alissonvgs.domain.ItemPedido;
 import com.alissonvgs.domain.PagamentoComBoleto;
 import com.alissonvgs.domain.Pedido;
@@ -38,6 +40,14 @@ public class PedidoService {
 	@Autowired
 	private ClienteService clienteService;
 	
+	@Autowired
+	private EmailService emailService;
+	
+	
+	public List<Pedido> findAll(){
+		return repo.findAll();
+	}
+	
 	public Pedido find(Integer id) {
 		Optional<Pedido> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
@@ -65,7 +75,7 @@ public class PedidoService {
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
 		
-		System.out.println(obj);
+		emailService.sendOrderConfirmationEmail(obj);
 		
 		return obj;
 	}
